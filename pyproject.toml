@@ -40,6 +40,7 @@ dependencies = [
 
     # package requirements for python 3.13 support
     "grpcio >=1.68.0",
+    "protobuf >=5.28.3",
     "pyarrow >=18.1.0",
     "tiktoken >=0.8.0",
 ]
