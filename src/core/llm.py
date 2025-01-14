@@ -7,6 +7,7 @@ from langchain_community.chat_models import FakeListChatModel
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_groq import ChatGroq
 from langchain_openai import ChatOpenAI
+from langchain_ollama import ChatOllama
 
 from schema.models import (
     AllModelEnum,
@@ -16,6 +17,7 @@ from schema.models import (
     GoogleModelName,
     GroqModelName,
     OpenAIModelName,
+    OllamaModelName
 )
 
 _MODEL_TABLE = {
@@ -30,6 +32,7 @@ _MODEL_TABLE = {
     GroqModelName.LLAMA_GUARD_3_8B: "llama-guard-3-8b",
     AWSModelName.BEDROCK_HAIKU: "anthropic.claude-3-5-haiku-20241022-v1:0",
     FakeModelName.FAKE: "fake",
+    OllamaModelName.LlamaGuard: "llama-guard3",
 }
 
 ModelT: TypeAlias = ChatOpenAI | ChatAnthropic | ChatGoogleGenerativeAI | ChatGroq | ChatBedrock
@@ -57,3 +60,5 @@ def get_model(model_name: AllModelEnum, /) -> ModelT:
         return ChatBedrock(model_id=api_model_name, temperature=0.5)
     if model_name in FakeModelName:
         return FakeListChatModel(responses=["This is a test response from the fake model."])
+    if model_name in OllamaModelName:
+        return ChatOllama(model=api_model_name, temperature=0.1)

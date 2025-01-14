@@ -52,6 +52,10 @@ class FakeModelName(StrEnum):
 
     FAKE = "fake"
 
+class OllamaModelName(StrEnum):
+    """https://ollama.com/library"""
+
+    LlamaGuard = "llama-guard3"
 
 AllModelEnum: TypeAlias = (
     OpenAIModelName
@@ -60,4 +64,5 @@ AllModelEnum: TypeAlias = (
     | GroqModelName
     | AWSModelName
     | FakeModelName
+    | OllamaModelName
 )
